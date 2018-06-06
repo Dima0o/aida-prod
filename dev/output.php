@@ -238,7 +238,10 @@ function all2()
             "id" => $data['id'],
             "name" => $data['name'],
             "price" => $data['id'],
+            "categori_name" => category_name($data['categori']),
             "uid" => $data['uid'],
+            "categori_id" => category($data['categori']),
+
             "categori" => category($data['categori']),
             "price" => price2($data['uid'], $_COOKIE['main-shop']),
             "img" => img2(),
@@ -283,10 +286,14 @@ function prod_cat($id)
     //img($data['name']);
     while ($data = mysql_fetch_array($qr_result)) {
         $mass[] = array(
+
+
             "id" => $data['id'],
             "name" => $data['name'],
             "price" => $data['id'],
             "uid" => $data['uid'],
+            "categori_name" => category_name($data['categori']),
+            "categori_id" => category($data['categori']),
             "categori" => category($data['categori']),
             "price" => price2($data['uid'], $_COOKIE['main-shop']),
             "img" => img2(),
@@ -455,10 +462,53 @@ function data_category($id){
     //return mysql_fetch_array($qr_result);
     return $mass;
 }
+function data_prod($id){
+    $qr_result = mysql_query("select * from `k99969kp_1c`.`prod` where `id`='$id'") or die(mysql_error());
+    while ($data = mysql_fetch_array($qr_result)) {
+        $mass[] = array(
+            "id" => $data['id'],
+            "name" => $data['name'],
+            "price" => $data['id'],
+            "code" => $data['code'],
+            "categori_name" => category_name($data['categori']),
+            "uid" => $data['uid'],
+            "categori_id" => category($data['categori']),
 
+            "about" => about($data['about']),
+            "price" => price2($data['uid'], $_COOKIE['main-shop']),
+            "img" => img2(),
+            //"tipe" => $data[ 'quantity' ]
+            //работа с типом товара для поиска его массива
+            "status" => status($data['id']),
+            //    "brend"=>brend($data['_silver']),
+            "event" => event_prod($data['uid'])
+
+        );
+    };
+    //return mysql_fetch_array($qr_result);
+    return $mass;
+}
+function about($text){
+    if($text==null){
+        return 'Повседневная практика показывает, что рамки и место обучения кадров влечет за собой процесс внедрения и модернизации дальнейших направлений развития. Товарищи! сложившаяся структура организации позволяет выполнять важные задания по разработке направлений прогрессивного развития. Повседневная практика показывает, что дальнейшее развитие различных форм деятельности требуют определения и уточнения дальнейших направлений развития. Таким образом консультация с широким активом требуют от нас анализа соответствующий условий активизации.';
+    }
+    return $text;
+}
+function category_name($id){
+    if(isset($id)){
+        $qr_result = mysql_query("select * from `k99969kp_1c`.`categori` where `uid`='" . $id . "'") or die(mysql_error());
+        while ($data = mysql_fetch_array($qr_result)) {
+            return $data['name'];
+        }
+    }else{
+        return "Категория-отсутствует";
+    }
+}
 function data_in(){
     if(isset($_GET['id'])){
      return   json_encode(data_category(categori_uid($_GET['id'])));
+    }elseif (isset($_GET['profile'])){
+     return   json_encode(data_prod($_GET['profile']));
     }else{
       //  data_out();
         return json_encode( all2() );
@@ -473,8 +523,20 @@ function col_category(){
         return 50;
     }
 }
+function PostMasss(){
+    $text='';
+    foreach ($_GET as $key=>$value){
 
+
+        $text.=$text.'/'.$key.'-'.$value;
+
+    };
+}
+
+//наладить работу функций для вхождения данных
 ?>
+
+
 {
     "token":"<?=$_COOKIE['PHPSESSID']?>",
     "titel":"<?= titel($_GET['id']) ?>",
@@ -482,6 +544,9 @@ function col_category(){
     "action":[],
     "data":<?= data_in(); ?>,
     "cat":"<?if (isset($_POST['id'])) {    echo categori_uid($_POST['id']);} else {    echo 'else';};?>",
-    "code":<?=col_category()?>
+    "code":<?=col_category()?>,
+    "keys":1<? ?>,
+    "mass":"<?=PostMasss()?>"
+
 }
 

@@ -233,7 +233,6 @@ function data_out()
 function all2()
 {
     $qr_result = mysql_query("select * from `k99969kp_1c`.`prod` LIMIT 0,20") or die(mysql_error());
-
     while ($data = mysql_fetch_array($qr_result)) {
         $mass[] = array(
             "id" => $data['id'],
