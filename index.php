@@ -1,244 +1,417 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: diman0o
- * Date: 16.05.18
- * Time: 12:24
- */
-
-header('Location: /blog.php');
-?>
-
-<html lang="en"><head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../../../favicon.ico">
-
-    <title>Blog Template for Bootstrap</title>
-
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+#Подключение к БД и начало сессии
+include("../dev/config.php");
+session_start();
+# Проверка существования SESSION
+//include("../get_map.php");
 
 
-    <!-- Custom styles for this template -->
-    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
-    <link href="blog.css" rel="stylesheet">
-    <style></style></head>
+function routung(){
+    //if(){}
+    $mass=array('hh','profile','catalog','shop','shop-id','card','lk','login');
+    if (in_array($_GET['tmp'], $mass)) {
+        return $_GET['tmp'];
+    }else{
+        return '404';
+    }
+}
 
+
+
+
+?><!DOCTYPE html>
+            <html lang="en"><head>
+            <meta charset="utf-8">
+            <title>Главаная</title> 
+            <!-- Mobile Specific Meta Tag-->
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"> 
+            <link rel="stylesheet" media="screen" href="css/vendor.min.css">  
+            <!-- Main Template Styles--> 
+            <link id="mainStyles" rel="stylesheet" media="screen" href="css/styles.min.css"> 
+            <!-- Modernizr-->   <!--      ADD GOOGLE ANALYTICS HERE            -->
+            </head><!-- Body-->
 <body>
-
-<div class="container">
-    <header class="blog-header py-3">
-        <div class="row flex-nowrap justify-content-between align-items-center">
-            <div class="col-4 pt-1">
-                <a class="text-muted" href="#">Subscribe</a>
+<!-- Shop Filters Modal-->
+<div class="modal fade" id="modalShopFilters" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Shop Filters</h4>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
-            <div class="col-4 text-center">
-                <a class="blog-header-logo text-dark" href="#">Large</a>
-            </div>
-            <div class="col-4 d-flex justify-content-end align-items-center">
-                <a class="text-muted" href="#">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-3"><circle cx="10.5" cy="10.5" r="7.5"></circle><line x1="21" y1="21" x2="15.8" y2="15.8"></line></svg>
-                </a>
-                <a class="btn btn-sm btn-outline-secondary" href="#">Sign up</a>
-            </div>
-        </div>
-    </header>
+            <div class="modal-body">
+                <!-- Widget Categories-->
+                <section class="widget widget-categories">
+                    <h3 class="widget-title">Shop Categories</h3>
+                    <ul id="widget-categories">
 
-    <div class="nav-scroller py-1 mb-2">
-        <nav class="nav d-flex justify-content-between">
-            <a class="p-2 text-muted" href="#">World</a>
-            <a class="p-2 text-muted" href="#">U.S.</a>
-            <a class="p-2 text-muted" href="#">Technology</a>
-            <a class="p-2 text-muted" href="#">Design</a>
-            <a class="p-2 text-muted" href="#">Culture</a>
-            <a class="p-2 text-muted" href="#">Business</a>
-            <a class="p-2 text-muted" href="#">Politics</a>
-            <a class="p-2 text-muted" href="#">Opinion</a>
-            <a class="p-2 text-muted" href="#">Science</a>
-            <a class="p-2 text-muted" href="#">Health</a>
-            <a class="p-2 text-muted" href="#">Style</a>
-            <a class="p-2 text-muted" href="#">Travel</a>
-        </nav>
-    </div>
-
-    <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark">
-        <div class="col-md-6 px-0">
-            <h1 class="display-4 font-italic">Title of a longer featured blog post</h1>
-            <p class="lead my-3">Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.</p>
-            <p class="lead mb-0"><a href="#" class="text-white font-weight-bold">Continue reading...</a></p>
-        </div>
-    </div>
-
-    <div class="row mb-2">
-        <div class="col-md-6">
-            <div class="card flex-md-row mb-4 box-shadow h-md-250">
-                <div class="card-body d-flex flex-column align-items-start">
-                    <strong class="d-inline-block mb-2 text-primary">World</strong>
-                    <h3 class="mb-0">
-                        <a class="text-dark" href="#">Featured post</a>
-                    </h3>
-                    <div class="mb-1 text-muted">Nov 12</div>
-                    <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#">Continue reading</a>
-                </div>
-                <img class="card-img-right flex-auto d-none d-lg-block" data-src="holder.js/200x250?theme=thumb" alt="Thumbnail [200x250]" style="width: 200px; height: 250px;" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22200%22%20height%3D%22250%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20250%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_163682eaebb%20text%20%7B%20fill%3A%23eceeef%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A13pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_163682eaebb%22%3E%3Crect%20width%3D%22200%22%20height%3D%22250%22%20fill%3D%22%2355595c%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2255.609375%22%20y%3D%22131%22%3EThumbnail%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true">
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="card flex-md-row mb-4 box-shadow h-md-250">
-                <div class="card-body d-flex flex-column align-items-start">
-                    <strong class="d-inline-block mb-2 text-success">Design</strong>
-                    <h3 class="mb-0">
-                        <a class="text-dark" href="#">Post title</a>
-                    </h3>
-                    <div class="mb-1 text-muted">Nov 11</div>
-                    <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#">Continue reading</a>
-                </div>
-                <img class="card-img-right flex-auto d-none d-lg-block" data-src="holder.js/200x250?theme=thumb" alt="Thumbnail [200x250]" style="width: 200px; height: 250px;" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22200%22%20height%3D%22250%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20200%20250%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_163682eaec2%20text%20%7B%20fill%3A%23eceeef%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A13pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_163682eaec2%22%3E%3Crect%20width%3D%22200%22%20height%3D%22250%22%20fill%3D%22%2355595c%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%2255.609375%22%20y%3D%22131%22%3EThumbnail%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true">
+                    </ul>
+                </section>
+                <!-- Widget Price Range-->
+                <section class="widget">
+                    <h3 class="widget-title">Price Range</h3>
+                    <select class="form-control">
+                        <option>0 - $100</option>
+                        <option>$100 - $200</option>
+                        <option>$200 - $500</option>
+                        <option>$500 - $1000</option>
+                        <option>$1000 - $5000</option>
+                    </select>
+                </section>
+                <!-- Widget Brand Filter-->
+                <section class="widget">
+                    <h3 class="widget-title">Filter by Brand</h3>
+                    <div class="custom-control custom-checkbox">
+                        <input class="custom-control-input" type="checkbox" id="adidas">
+                        <label class="custom-control-label" for="adidas">Adidas&nbsp;<span class="text-muted">(254)</span></label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input class="custom-control-input" type="checkbox" id="bilabong">
+                        <label class="custom-control-label" for="bilabong">Bilabong&nbsp;<span class="text-muted">(39)</span></label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input class="custom-control-input" type="checkbox" id="klein">
+                        <label class="custom-control-label" for="klein">Calvin Klein&nbsp;<span class="text-muted">(128)</span></label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input class="custom-control-input" type="checkbox" id="nike">
+                        <label class="custom-control-label" for="nike">Nike&nbsp;<span class="text-muted">(310)</span></label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input class="custom-control-input" type="checkbox" id="bahama">
+                        <label class="custom-control-label" for="bahama">Tommy Bahama&nbsp;<span class="text-muted">(42)</span></label>
+                    </div>
+                </section>
+                <!-- Widget Size Filter-->
+                <section class="widget">
+                    <h3 class="widget-title">Filter by Size</h3>
+                    <div class="custom-control custom-checkbox">
+                        <input class="custom-control-input" type="checkbox" id="xl">
+                        <label class="custom-control-label" for="xl">XL&nbsp;<span class="text-muted">(208)</span></label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input class="custom-control-input" type="checkbox" id="l">
+                        <label class="custom-control-label" for="l">L&nbsp;<span class="text-muted">(311)</span></label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input class="custom-control-input" type="checkbox" id="m">
+                        <label class="custom-control-label" for="m">M&nbsp;<span class="text-muted">(485)</span></label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input class="custom-control-input" type="checkbox" id="s">
+                        <label class="custom-control-label" for="s">S&nbsp;<span class="text-muted">(213)</span></label>
+                    </div>
+                </section>
+                <!-- Promo Banner-->
+                <section class="promo-box" style="background-image: url(img/banners/01.jpg);">
+                    <!-- Choose between .overlay-dark (#000) or .overlay-light (#fff) with default opacity of 50%. You can overrride default color and opacity values via \'style\' attribute.--><span class="overlay-dark" style="opacity: .45;"></span>
+                    <div class="promo-box-content text-center padding-top-3x padding-bottom-2x">
+                        <h4 class="text-light text-thin text-shadow">Рекламная запись</h4>
+                        <h3 class="text-bold text-light text-shadow">Горячий сыр</h3><a class="btn btn-sm btn-warning" href="#">Shop Now</a>
+                    </div>
+                </section>
             </div>
         </div>
     </div>
 </div>
-
-<main role="main" class="container">
-    <div class="row">
-        <aside class="col-md-4 blog-sidebar">
-            <div class="p-3 mb-3 bg-light rounded">
-                <h4 class="font-italic">About</h4>
-                <p class="mb-0">Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+<!-- Topbar-->
+<div class="topbar">
+    <div class="topbar-column"><a class="hidden-md-down" href="mailto:support@tshop.com"><i class="icon-mail"></i>&nbsp; support@tshop.com</a><a class="hidden-md-down" href="tel:00331697720"><i class="icon-bell"></i>&nbsp; 00 33 169 7720</a><a class="social-button sb-facebook shape-none sb-dark" href="#" target="_blank"><i class="socicon-facebook"></i></a><a class="social-button sb-twitter shape-none sb-dark" href="#" target="_blank"><i class="socicon-twitter"></i></a><a class="social-button sb-instagram shape-none sb-dark" href="#" target="_blank"><i class="socicon-instagram"></i></a><a class="social-button sb-pinterest shape-none sb-dark" href="#" target="_blank"><i class="socicon-pinterest"></i></a>
+    </div>
+    <div class="topbar-column"><a class="hidden-md-down" href="#"><i class="icon-download"></i>&nbsp; Get mobile app</a>
+        <div class="lang-currency-switcher-wrap">
+            <div class="lang-currency-switcher dropdown-toggle"><span class="language"><img alt="English" src="img/flags/GB.png"></span><span class="currency">$ USD</span></div>
+            <div class="dropdown-menu">
+                <div class="currency-select">
+                    <select class="form-control form-control-rounded form-control-sm">
+                        <option value="usd">$ USD</option>
+                        <option value="usd">€ EUR</option>
+                        <option value="usd">£ UKP</option>
+                        <option value="usd">¥ JPY</option>
+                    </select>
+                </div><a class="dropdown-item" href="#"><img src="img/flags/FR.png" alt="Français">Français</a><a class="dropdown-item" href="#"><img src="img/flags/DE.png" alt="Deutsch">Deutsch</a><a class="dropdown-item" href="#"><img src="img/flags/IT.png" alt="Italiano">Italiano</a>
             </div>
-
-            <div class="p-3">
-                <h4 class="font-italic">Archives</h4>
-                <ol class="list-unstyled mb-0">
-                    <li><a href="#">March 2014</a></li>
-                    <li><a href="#">February 2014</a></li>
-                    <li><a href="#">January 2014</a></li>
-                    <li><a href="#">December 2013</a></li>
-                    <li><a href="#">November 2013</a></li>
-                    <li><a href="#">October 2013</a></li>
-                    <li><a href="#">September 2013</a></li>
-                    <li><a href="#">August 2013</a></li>
-                    <li><a href="#">July 2013</a></li>
-                    <li><a href="#">June 2013</a></li>
-                    <li><a href="#">May 2013</a></li>
-                    <li><a href="#">April 2013</a></li>
-                </ol>
+        </div>
+    </div>
+</div>
+<!-- Navbar-->
+<!-- Remove "navbar-sticky" class to make navigation bar scrollable with the page.-->
+<header class="navbar navbar-sticky">
+    <!-- Search-->
+    <form class="site-search" method="get">
+        <input type="text" name="site_search" placeholder="Type to search...">
+        <div class="search-tools"><span class="clear-search">Clear</span><span class="close-search"><i class="icon-cross"></i></span></div>
+    </form>
+    <div class="site-branding">
+        <div class="inner">
+            <!-- Off-Canvas Toggle (#shop-categories)--><a class="offcanvas-toggle cats-toggle" href="#shop-categories" data-toggle="offcanvas"></a>
+            <!-- Off-Canvas Toggle (#mobile-menu)--><a class="offcanvas-toggle menu-toggle" href="#mobile-menu" data-toggle="offcanvas"></a>
+            <!-- Site Logo--><a class="site-logo" href="index.html"><img src="http://aidaset.ru/wp-content/themes/Aida%20Template%20Mark%201/images/vacancyAida.png" alt="tshop"></a>
+        </div>
+    </div>
+    <!-- Main Navigation-->
+    <nav class="site-menu">
+        <ul id="header-main">
+            <li class="has-megamenu"><a href="index.html"><span>Home</span></a></li>
+            <li class="active"><a href="shop-grid-ls.html"><span>Shop</span></a></li>
+            <li class="active"><a href="about.html"><span>About</span></a></li>
+        </ul>
+    </nav>
+    <!-- Toolbar-->
+    <div class="toolbar">
+        <div class="inner">
+            <div class="tools">
+                <div class="search"><i class="icon-search"></i></div>
+                <div class="account"><a href="account-orders.html"></a><i class="icon-head"></i>
+                    <ul class="toolbar-dropdown">
+                        <li class="sub-menu-user">
+                            <div class="user-ava"><img src="img/account/user-ava-sm.jpg" alt="Daniel Adams">
+                            </div>
+                            <div class="user-info">
+                                <h6 class="user-name">Daniel Adams</h6><span class="text-xs text-muted">290 Reward points</span>
+                            </div>
+                        </li>
+                        <li><a href="account-profile.html">My Profile</a></li>
+                        <li><a href="account-orders.html">Orders List</a></li>
+                        <li><a href="account-wishlist.html">Wishlist</a></li>
+                        <li class="sub-menu-separator"></li>
+                        <li><a href="#"> <i class="icon-unlock"></i>Logout</a></li>
+                    </ul>
+                </div>
+                <div id="cart" class="cart">
+                    <a href="cart.html"></a><i class="icon-bag"></i><span id="count" class="count">3</span><span
+                        id="subtotal"   class="subtotal">Рублеей 00</span>
+                    <div class="toolbar-dropdown" id="card-list">
+                        <div class="dropdown-product-item"><span class="dropdown-product-remove"><i class="icon-cross"></i></span><a class="dropdown-product-thumb" href="shop-single.html"><img src="img/cart-dropdown/01.jpg" alt="Product"></a>
+                            <div class="dropdown-product-info"><a class="dropdown-product-title" href="shop-single.html">Unionbay Park</a><span class="dropdown-product-details">1 x $43.90</span></div>
+                        </div>
+                        <div class="dropdown-product-item"><span class="dropdown-product-remove"><i class="icon-cross"></i></span><a class="dropdown-product-thumb" href="shop-single.html"><img src="img/cart-dropdown/02.jpg" alt="Product"></a>
+                            <div class="dropdown-product-info"><a class="dropdown-product-title" href="shop-single.html">Daily Fabric Cap</a><span class="dropdown-product-details">2 x $24.89</span></div>
+                        </div>
+                        <div class="dropdown-product-item"><span class="dropdown-product-remove"><i class="icon-cross"></i></span><a class="dropdown-product-thumb" href="shop-single.html"><img src="img/cart-dropdown/03.jpg" alt="Product"></a>
+                            <div class="dropdown-product-info"><a class="dropdown-product-title" href="shop-single.html">Haan Crossbody</a><span class="dropdown-product-details">1 x $200.00</span></div>
+                        </div>
+                        <div class="toolbar-dropdown-group">
+                            <div class="column"><span class="text-lg">Total:</span></div>
+                            <div class="column text-right"><span class="text-lg text-medium">$289.68&nbsp;</span></div>
+                        </div>
+                        <div class="toolbar-dropdown-group">
+                            <div class="column"><a class="btn btn-sm btn-block btn-secondary" href="cart.html">View Cart</a></div>
+                            <div class="column"><a class="btn btn-sm btn-block btn-success" href="checkout-address.html">Checkout</a></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            <div class="p-3">
-                <h4 class="font-italic">Elsewhere</h4>
-                <ol class="list-unstyled">
-                    <li><a href="#">GitHub</a></li>
-                    <li><a href="#">Twitter</a></li>
-                    <li><a href="#">Facebook</a></li>
-                </ol>
+        </div>
+    </div>
+</header>
+<!-- Off-Canvas Wrapper-->
+<div class="offcanvas-wrapper">
+    <!-- Page Title-->
+    <div class="page-title">
+        <div class="container">
+            <div class="column">
+                <h1>Shop Grid Left Sidebar</h1>
             </div>
-        </aside><!-- /.blog-sidebar -->
-
-        <div class="col-md-8 blog-main" id="result">
-            <h3 class="pb-3 mb-4 font-italic border-bottom">
-                From the Firehose
-            </h3>
-
-            <div class="blog-post">
-                <h2 class="blog-post-title">Sample blog post</h2>
-                <p class="blog-post-meta">January 1, 2014 by <a href="#">Mark</a></p>
-
-                <p>This blog post shows a few different types of content that's supported and styled with Bootstrap. Basic typography, images, and code are all supported.</p>
-                <hr>
-                <p>Cum sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.</p>
-                <blockquote>
-                    <p>Curabitur blandit tempus porttitor. <strong>Nullam quis risus eget urna mollis</strong> ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                </blockquote>
-                <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
-                <h2>Heading</h2>
-                <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-                <h3>Sub-heading</h3>
-                <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-                <pre><code>Example code block</code></pre>
-                <p>Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.</p>
-                <h3>Sub-heading</h3>
-                <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-                <ul>
-                    <li>Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</li>
-                    <li>Donec id elit non mi porta gravida at eget metus.</li>
-                    <li>Nulla vitae elit libero, a pharetra augue.</li>
+            <div class="column">
+                <ul class="breadcrumbs">
+                    <li><a href="index.html">Home</a>
+                    </li>
+                    <li class="separator">&nbsp;</li>
+                    <li>Shop Grid Left Sidebar</li>
                 </ul>
-                <p>Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.</p>
-                <ol>
-                    <li>Vestibulum id ligula porta felis euismod semper.</li>
-                    <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</li>
-                    <li>Maecenas sed diam eget risus varius blandit sit amet non magna.</li>
-                </ol>
-                <p>Cras mattis consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis.</p>
-            </div><!-- /.blog-post -->
+            </div>
+        </div>
+    </div>
+    <!-- Page Content-->
+    <div  class="container padding-bottom-2x mb-2">
+        <div class="row">
+            <div id="container"   class="col-xl-9 col-lg-8 order-lg-2"></div>
+            <div class="col-xl-3 col-lg-4 order-lg-1">
+                <button class="sidebar-toggle position-left" data-toggle="modal" data-target="#modalShopFilters"><i class="icon-layout"></i></button>
+                <aside class="sidebar sidebar-offcanvas">
+                    <!-- Widget Categories-->
+                    <section class="widget widget-categories">
+                        <h3 class="widget-title">Shop Categories</h3>
+                        <ul id="widget-categories-2">
 
-            <div class="blog-post">
-                <h2 class="blog-post-title">Another blog post</h2>
-                <p class="blog-post-meta">December 23, 2013 by <a href="#">Jacob</a></p>
-
-                <p>Cum sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.</p>
-                <blockquote>
-                    <p>Curabitur blandit tempus porttitor. <strong>Nullam quis risus eget urna mollis</strong> ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                </blockquote>
-                <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
-                <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-            </div><!-- /.blog-post -->
-
-            <div class="blog-post">
-                <h2 class="blog-post-title">New feature</h2>
-                <p class="blog-post-meta">December 14, 2013 by <a href="#">Chris</a></p>
-
-                <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-                <ul>
-                    <li>Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</li>
-                    <li>Donec id elit non mi porta gravida at eget metus.</li>
-                    <li>Nulla vitae elit libero, a pharetra augue.</li>
-                </ul>
-                <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
-                <p>Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.</p>
-            </div><!-- /.blog-post -->
-
-            <nav class="blog-pagination">
-                <a class="btn btn-outline-primary" href="#">Older</a>
-                <a class="btn btn-outline-secondary disabled" href="#">Newer</a>
-            </nav>
-
-        </div><!-- /.blog-main -->
-
-
-    </div><!-- /.row -->
-
-</main><!-- /.container -->
-
-<footer class="blog-footer">
-    <p>Blog template built for <a href="https://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
-    <p>
-        <a href="#">Back to top</a>
-    </p>
-</footer>
-
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+                        </ul>
+                    </section>
+                    <!-- Widget Price Range-->
+                    <section class="widget widget-categories">
+                        <h3 class="widget-title">Price Range</h3>
+                        <form class="price-range-slider" method="post" data-start-min="250" data-start-max="650" data-min="0" data-max="1000" data-step="1">
+                            <div class="ui-range-slider"></div>
+                            <footer class="ui-range-slider-footer">
+                                <div class="column">
+                                    <button class="btn btn-outline-primary btn-sm" type="submit">Filter</button>
+                                </div>
+                                <div class="column">
+                                    <div class="ui-range-values">
+                                        <div class="ui-range-value-min">$<span></span>
+                                            <input type="hidden">
+                                        </div>&nbsp;-&nbsp;
+                                        <div class="ui-range-value-max">$<span></span>
+                                            <input type="hidden">
+                                        </div>
+                                    </div>
+                                </div>
+                            </footer>
+                        </form>
+                    </section>
+                    <!-- Widget Brand Filter-->
+                    <section class="widget">
+                        <h3 class="widget-title">Filter by Brand</h3>
+                        <div class="custom-control custom-checkbox">
+                            <input class="custom-control-input" type="checkbox" id="adidas">
+                            <label class="custom-control-label" for="adidas">Adidas&nbsp;<span class="text-muted">(254)</span></label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input class="custom-control-input" type="checkbox" id="bilabong">
+                            <label class="custom-control-label" for="bilabong">Bilabong&nbsp;<span class="text-muted">(39)</span></label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input class="custom-control-input" type="checkbox" id="klein">
+                            <label class="custom-control-label" for="klein">Calvin Klein&nbsp;<span class="text-muted">(128)</span></label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input class="custom-control-input" type="checkbox" id="nike">
+                            <label class="custom-control-label" for="nike">Nike&nbsp;<span class="text-muted">(310)</span></label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input class="custom-control-input" type="checkbox" id="bahama">
+                            <label class="custom-control-label" for="bahama">Tommy Bahama&nbsp;<span class="text-muted">(42)</span></label>
+                        </div>
+                    </section>
+                    <!-- Widget Size Filter-->
+                    <section class="widget">
+                        <h3 class="widget-title">Filter by Size</h3>
+                        <div class="custom-control custom-checkbox">
+                            <input class="custom-control-input" type="checkbox" id="xl">
+                            <label class="custom-control-label" for="xl">XL&nbsp;<span class="text-muted">(208)</span></label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input class="custom-control-input" type="checkbox" id="l">
+                            <label class="custom-control-label" for="l">L&nbsp;<span class="text-muted">(311)</span></label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input class="custom-control-input" type="checkbox" id="m">
+                            <label class="custom-control-label" for="m">M&nbsp;<span class="text-muted">(485)</span></label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input class="custom-control-input" type="checkbox" id="s">
+                            <label class="custom-control-label" for="s">S&nbsp;<span class="text-muted">(213)</span></label>
+                        </div>
+                    </section>
+                    <!-- Promo Banner-->
+                    <section class="promo-box" style="background-image: url(img/banners/02.jpg);">
+                        <!-- Choose between .overlay-dark (#000) or .overlay-light (#fff) with default opacity of 50%. You can overrride default color and opacity values via 'style' attribute.--><span class="overlay-dark" style="opacity: .45;"></span>
+                        <div class="promo-box-content text-center padding-top-3x padding-bottom-2x">
+                            <h4 class="text-light text-thin text-shadow">Рекламная запись</h4>
+                            <h3 class="text-bold text-light text-shadow">Горячий сыр</h3><a class="btn btn-sm btn-warning" href="#">Пордробнее</a>
+                        </div>
+                    </section>
+                </aside>
+            </div>
+        </div>
+    </div>
+    <!-- Site Footer-->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <!-- Contact Info-->
+                    <section class="widget widget-light-skin">
+                        <h3 class="widget-title">Get In Touch With Us</h3>
+                        <p class="text-white">Phone: 00 33 169 7720</p>
+                        <ul class="list-unstyled text-sm text-white">
+                            <li><span class="opacity-50">Monday-Friday:</span>9.00 am - 8.00 pm</li>
+                            <li><span class="opacity-50">Saturday:</span>10.00 am - 6.00 pm</li>
+                        </ul>
+                        <p><a class="navi-link-light" href="#">support@tshop.com</a></p><a class="social-button shape-circle sb-facebook sb-light-skin" href="#"><i class="socicon-facebook"></i></a><a class="social-button shape-circle sb-twitter sb-light-skin" href="#"><i class="socicon-twitter"></i></a><a class="social-button shape-circle sb-instagram sb-light-skin" href="#"><i class="socicon-instagram"></i></a><a class="social-button shape-circle sb-google-plus sb-light-skin" href="#"><i class="socicon-googleplus"></i></a>
+                    </section>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <!-- Mobile App Buttons-->
+                    <section class="widget widget-light-skin">
+                        <h3 class="widget-title">Our Mobile App</h3><a class="market-button apple-button mb-light-skin" href="#"><span class="mb-subtitle">Download on the</span><span class="mb-title">App Store</span></a><a class="market-button google-button mb-light-skin" href="#"><span class="mb-subtitle">Download on the</span><span class="mb-title">Google Play</span></a><a class="market-button windows-button mb-light-skin" href="#"><span class="mb-subtitle">Download on the</span><span class="mb-title">Windows Store</span></a>
+                    </section>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <!-- About Us-->
+                    <section class="widget widget-links widget-light-skin">
+                        <h3 class="widget-title">About Us</h3>
+                        <ul>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">About tshop</a></li>
+                            <li><a href="#">Our Story</a></li>
+                            <li><a href="#">Services</a></li>
+                            <li><a href="#">Our Blog</a></li>
+                        </ul>
+                    </section>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <!-- Account / Shipping Info-->
+                    <section class="widget widget-links widget-light-skin">
+                        <h3 class="widget-title">Account &amp; Shipping Info</h3>
+                        <ul>
+                            <li><a href="#">Your Account</a></li>
+                            <li><a href="#">Shipping Rates & Policies</a></li>
+                            <li><a href="#">Refunds & Replacements</a></li>
+                            <li><a href="#">Taxes</a></li>
+                            <li><a href="#">Delivery Info</a></li>
+                            <li><a href="#">Affiliate Program</a></li>
+                        </ul>
+                    </section>
+                </div>
+            </div>
+            <hr class="hr-light mt-2 margin-bottom-2x">
+            <div class="row">
+                <div class="col-md-7 padding-bottom-1x">
+                    <!-- Payment Methods-->
+                    <div class="margin-bottom-1x" style="max-width: 615px;"><img src="img/payment_methods.png" alt="Payment Methods">
+                    </div>
+                </div>
+                <div class="col-md-5 padding-bottom-1x">
+                    <div class="margin-top-1x hidden-md-up"></div>
+                    <!--Subscription-->
+                    <form class="subscribe-form" action="//rokaux.us12.list-manage.com/subscribe/post?u=c7103e2c981361a6639545bd5&amp;amp;id=1194bb7544" method="post" target="_blank" novalidate>
+                        <div class="clearfix">
+                            <div class="input-group input-light">
+                                <input class="form-control" type="email" name="EMAIL" placeholder="Your e-mail"><span class="input-group-addon"><i class="icon-mail"></i></span>
+                            </div>
+                            <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                            <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                                <input type="text" name="b_c7103e2c981361a6639545bd5_1194bb7544" tabindex="-1">
+                            </div>
+                            <button class="btn btn-primary" type="submit"><i class="icon-check"></i></button>
+                        </div><span class="form-text text-sm text-white opacity-50">Subscribe to our Newsletter to receive early discount offers, latest news, sales and promo information.</span>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+<!-- Back To Top Button--><a class="scroll-to-top-btn" href="#"><i class="icon-arrow-up"></i></a>
+<!-- Backdrop-->
+<div class="site-backdrop"></div>
+<!-- JavaScript (jQuery) libraries, plugins and custom scripts-->
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+<script src="http://code.jquery.com/ui/1.11.0-beta.1/jquery-ui.js" integrity="sha256-q5raG0xmu2guatVMnFCPiZAbKKY5ZX0Wq0Uvar+qN78=" crossorigin="anonymous"></script>
+<script src="js/global.js"></script>
 <script src="js/catalog.js"></script>
+<script src="js/aida_global.js"></script>
+<script src="js/ecomerse.js"></script>
+<script src="js/vendor.min.js" defer></script>
+<script src="js/scripts.min.js" defer></script>
 <script>
+    categoru_list();
+  //  Catalog_bild();
+    Menu();
+    Card_Bild();
+    <?=routung()?>();
+</script>
 
-    Catalog_bild(<? if(isset($_GET['id'])){ echo $_GET['id'];}else{ echo 1;}?>);
-    Holder.addTheme('thumb', {
-        bg: '#55595c',
-        fg: '#eceeef',
-        text: 'Thumbnail'
-    });
-</script>\
 </body>
 </html>

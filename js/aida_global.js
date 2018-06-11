@@ -367,3 +367,11 @@ function Shop_listing() {
 //Shop_listing();
 //глобальный вызов постройки карзины
 
+
+
+
+
+
+
+
+
