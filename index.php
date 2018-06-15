@@ -116,9 +116,9 @@ function routung(){
 </div>
 <!-- Topbar-->
 <div class="topbar">
-    <div class="topbar-column"><a class="hidden-md-down" href="mailto:support@tshop.com"><i class="icon-mail"></i>&nbsp; support@tshop.com</a><a class="hidden-md-down" href="tel:00331697720"><i class="icon-bell"></i>&nbsp; 00 33 169 7720</a><a class="social-button sb-facebook shape-none sb-dark" href="#" target="_blank"><i class="socicon-facebook"></i></a><a class="social-button sb-twitter shape-none sb-dark" href="#" target="_blank"><i class="socicon-twitter"></i></a><a class="social-button sb-instagram shape-none sb-dark" href="#" target="_blank"><i class="socicon-instagram"></i></a><a class="social-button sb-pinterest shape-none sb-dark" href="#" target="_blank"><i class="socicon-pinterest"></i></a>
+    <div class="topbar-column"><a class="hidden-md-down" href="mailto:support@tshop.com"><i class="icon-mail"></i>&nbsp; aida-set@aidaset.ru</a><a class="hidden-md-down" href="tel:00331697720"><i class="icon-bell"></i>&nbsp; 8 800 700 47 51</a><a class="social-button sb-facebook shape-none sb-dark" href="#" target="_blank"><i class="socicon-facebook"></i></a><a class="social-button sb-twitter shape-none sb-dark" href="#" target="_blank"><i class="socicon-twitter"></i></a><a class="social-button sb-instagram shape-none sb-dark" href="#" target="_blank"><i class="socicon-instagram"></i></a><a class="social-button sb-pinterest shape-none sb-dark" href="#" target="_blank"><i class="socicon-pinterest"></i></a>
     </div>
-    <div class="topbar-column"><a class="hidden-md-down" href="#"><i class="icon-download"></i>&nbsp; Get mobile app</a>
+    <!--<div class="topbar-column"><a class="hidden-md-down" href="#"><i class="icon-download"></i>&nbsp; Get mobile app</a>
         <div class="lang-currency-switcher-wrap">
             <div class="lang-currency-switcher dropdown-toggle"><span class="language"><img alt="English" src="img/flags/GB.png"></span><span class="currency">$ USD</span></div>
             <div class="dropdown-menu">
@@ -132,7 +132,7 @@ function routung(){
                 </div><a class="dropdown-item" href="#"><img src="img/flags/FR.png" alt="Français">Français</a><a class="dropdown-item" href="#"><img src="img/flags/DE.png" alt="Deutsch">Deutsch</a><a class="dropdown-item" href="#"><img src="img/flags/IT.png" alt="Italiano">Italiano</a>
             </div>
         </div>
-    </div>
+    </div>-->
 </div>
 <!-- Navbar-->
 <!-- Remove "navbar-sticky" class to make navigation bar scrollable with the page.-->
@@ -211,14 +211,11 @@ function routung(){
     <div class="page-title">
         <div class="container">
             <div class="column">
-                <h1>Shop Grid Left Sidebar</h1>
+                <h1 id="titel-page">Shop Grid Left Sidebar</h1>
             </div>
             <div class="column">
                 <ul class="breadcrumbs">
-                    <li><a href="index.html">Home</a>
-                    </li>
-                    <li class="separator">&nbsp;</li>
-                    <li>Shop Grid Left Sidebar</li>
+
                 </ul>
             </div>
         </div>
@@ -227,91 +224,8 @@ function routung(){
     <div  class="container padding-bottom-2x mb-2">
         <div class="row">
             <div id="container"   class="col-xl-9 col-lg-8 order-lg-2"></div>
-            <div class="col-xl-3 col-lg-4 order-lg-1">
-                <button class="sidebar-toggle position-left" data-toggle="modal" data-target="#modalShopFilters"><i class="icon-layout"></i></button>
-                <aside class="sidebar sidebar-offcanvas">
-                    <!-- Widget Categories-->
-                    <section class="widget widget-categories">
-                        <h3 class="widget-title">Shop Categories</h3>
-                        <ul id="widget-categories-2">
-
-                        </ul>
-                    </section>
-                    <!-- Widget Price Range-->
-                    <section class="widget widget-categories">
-                        <h3 class="widget-title">Price Range</h3>
-                        <form class="price-range-slider" method="post" data-start-min="250" data-start-max="650" data-min="0" data-max="1000" data-step="1">
-                            <div class="ui-range-slider"></div>
-                            <footer class="ui-range-slider-footer">
-                                <div class="column">
-                                    <button class="btn btn-outline-primary btn-sm" type="submit">Filter</button>
-                                </div>
-                                <div class="column">
-                                    <div class="ui-range-values">
-                                        <div class="ui-range-value-min">$<span></span>
-                                            <input type="hidden">
-                                        </div>&nbsp;-&nbsp;
-                                        <div class="ui-range-value-max">$<span></span>
-                                            <input type="hidden">
-                                        </div>
-                                    </div>
-                                </div>
-                            </footer>
-                        </form>
-                    </section>
-                    <!-- Widget Brand Filter-->
-                    <section class="widget">
-                        <h3 class="widget-title">Filter by Brand</h3>
-                        <div class="custom-control custom-checkbox">
-                            <input class="custom-control-input" type="checkbox" id="adidas">
-                            <label class="custom-control-label" for="adidas">Adidas&nbsp;<span class="text-muted">(254)</span></label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                            <input class="custom-control-input" type="checkbox" id="bilabong">
-                            <label class="custom-control-label" for="bilabong">Bilabong&nbsp;<span class="text-muted">(39)</span></label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                            <input class="custom-control-input" type="checkbox" id="klein">
-                            <label class="custom-control-label" for="klein">Calvin Klein&nbsp;<span class="text-muted">(128)</span></label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                            <input class="custom-control-input" type="checkbox" id="nike">
-                            <label class="custom-control-label" for="nike">Nike&nbsp;<span class="text-muted">(310)</span></label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                            <input class="custom-control-input" type="checkbox" id="bahama">
-                            <label class="custom-control-label" for="bahama">Tommy Bahama&nbsp;<span class="text-muted">(42)</span></label>
-                        </div>
-                    </section>
-                    <!-- Widget Size Filter-->
-                    <section class="widget">
-                        <h3 class="widget-title">Filter by Size</h3>
-                        <div class="custom-control custom-checkbox">
-                            <input class="custom-control-input" type="checkbox" id="xl">
-                            <label class="custom-control-label" for="xl">XL&nbsp;<span class="text-muted">(208)</span></label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                            <input class="custom-control-input" type="checkbox" id="l">
-                            <label class="custom-control-label" for="l">L&nbsp;<span class="text-muted">(311)</span></label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                            <input class="custom-control-input" type="checkbox" id="m">
-                            <label class="custom-control-label" for="m">M&nbsp;<span class="text-muted">(485)</span></label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                            <input class="custom-control-input" type="checkbox" id="s">
-                            <label class="custom-control-label" for="s">S&nbsp;<span class="text-muted">(213)</span></label>
-                        </div>
-                    </section>
-                    <!-- Promo Banner-->
-                    <section class="promo-box" style="background-image: url(img/banners/02.jpg);">
-                        <!-- Choose between .overlay-dark (#000) or .overlay-light (#fff) with default opacity of 50%. You can overrride default color and opacity values via 'style' attribute.--><span class="overlay-dark" style="opacity: .45;"></span>
-                        <div class="promo-box-content text-center padding-top-3x padding-bottom-2x">
-                            <h4 class="text-light text-thin text-shadow">Рекламная запись</h4>
-                            <h3 class="text-bold text-light text-shadow">Горячий сыр</h3><a class="btn btn-sm btn-warning" href="#">Пордробнее</a>
-                        </div>
-                    </section>
-                </aside>
+            <div id="blok-menu"  class="col-xl-3 col-lg-4 order-lg-1">
+                <?//--работа с боковым меню для собственных целей ?>
             </div>
         </div>
     </div>
@@ -322,45 +236,50 @@ function routung(){
                 <div class="col-lg-3 col-md-6">
                     <!-- Contact Info-->
                     <section class="widget widget-light-skin">
-                        <h3 class="widget-title">Get In Touch With Us</h3>
-                        <p class="text-white">Phone: 00 33 169 7720</p>
+                        <h3 class="widget-title">Контакты</h3>
+                        <p class="text-white">Телефон:  8 800 700 47 51</p>
                         <ul class="list-unstyled text-sm text-white">
-                            <li><span class="opacity-50">Monday-Friday:</span>9.00 am - 8.00 pm</li>
-                            <li><span class="opacity-50">Saturday:</span>10.00 am - 6.00 pm</li>
+                            <li><span class="opacity-50">Понедельник-Воскресенье:</span>7.90 - 23.30</li>
+                            <!--<li><span class="opacity-50">Saturday:</span>10.00 am - 6.00 pm</li>-->
                         </ul>
-                        <p><a class="navi-link-light" href="#">support@tshop.com</a></p><a class="social-button shape-circle sb-facebook sb-light-skin" href="#"><i class="socicon-facebook"></i></a><a class="social-button shape-circle sb-twitter sb-light-skin" href="#"><i class="socicon-twitter"></i></a><a class="social-button shape-circle sb-instagram sb-light-skin" href="#"><i class="socicon-instagram"></i></a><a class="social-button shape-circle sb-google-plus sb-light-skin" href="#"><i class="socicon-googleplus"></i></a>
+                        <p><a class="navi-link-light" href="#">aida-set@aidaset.ru</a></p><a class="social-button shape-circle sb-facebook sb-light-skin" href="#"><i class="socicon-facebook"></i></a><a class="social-button shape-circle sb-twitter sb-light-skin" href="#"><i class="socicon-twitter"></i></a><a class="social-button shape-circle sb-instagram sb-light-skin" href="#"><i class="socicon-instagram"></i></a><a class="social-button shape-circle sb-google-plus sb-light-skin" href="#"><i class="socicon-googleplus"></i></a>
                     </section>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <!-- Mobile App Buttons-->
                     <section class="widget widget-light-skin">
-                        <h3 class="widget-title">Our Mobile App</h3><a class="market-button apple-button mb-light-skin" href="#"><span class="mb-subtitle">Download on the</span><span class="mb-title">App Store</span></a><a class="market-button google-button mb-light-skin" href="#"><span class="mb-subtitle">Download on the</span><span class="mb-title">Google Play</span></a><a class="market-button windows-button mb-light-skin" href="#"><span class="mb-subtitle">Download on the</span><span class="mb-title">Windows Store</span></a>
+                        <h3 class="widget-title">Мобильное приложение</h3>
+                        <a class="market-button apple-button mb-light-skin" href="#">
+                            <span class="mb-subtitle">Download on the</span>
+                            <span class="mb-title">App Store</span>
+                        </a>
+                        <a class="market-button google-button mb-light-skin" href="#">
+                            <span class="mb-subtitle">Download on the</span>
+                            <span class="mb-title">Google Play</span>
+                        </a>
                     </section>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <!-- About Us-->
                     <section class="widget widget-links widget-light-skin">
-                        <h3 class="widget-title">About Us</h3>
+                        <h3 class="widget-title">О компании</h3>
                         <ul>
-                            <li><a href="#">Careers</a></li>
-                            <li><a href="#">About tshop</a></li>
-                            <li><a href="#">Our Story</a></li>
-                            <li><a href="#">Services</a></li>
-                            <li><a href="#">Our Blog</a></li>
+                            <li><a href="#">Карьера</a></li>
+                            <li><a href="#">История</a></li>
+                            <li><a href="#">Новости</a></li>
+                            <li><a href="#">Сотрудничество</a></li>
                         </ul>
                     </section>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <!-- Account / Shipping Info-->
                     <section class="widget widget-links widget-light-skin">
-                        <h3 class="widget-title">Account &amp; Shipping Info</h3>
+                        <h3 class="widget-title">Интернет-магазин</h3>
                         <ul>
-                            <li><a href="#">Your Account</a></li>
-                            <li><a href="#">Shipping Rates & Policies</a></li>
-                            <li><a href="#">Refunds & Replacements</a></li>
-                            <li><a href="#">Taxes</a></li>
-                            <li><a href="#">Delivery Info</a></li>
-                            <li><a href="#">Affiliate Program</a></li>
+                            <li><a href="#">Помощь покупателю</a></li>
+                            <li><a href="#">Оплата и доставка</a></li>
+                            <li><a href="#">Каталог товаров</a></li>
+                            <li><a href="#">Акции и скидки</a></li>
                         </ul>
                     </section>
                 </div>
@@ -369,7 +288,9 @@ function routung(){
             <div class="row">
                 <div class="col-md-7 padding-bottom-1x">
                     <!-- Payment Methods-->
-                    <div class="margin-bottom-1x" style="max-width: 615px;"><img src="img/payment_methods.png" alt="Payment Methods">
+                    <div class="margin-bottom-1x" style="max-width: 615px;">
+                        <!--<img src="img/payment_methods.png" alt="Payment Methods">-->
+                        <img src="http://roadnet.ru/images/Visa-MasterCard-Maestro-Mir.png" alt="Payment Methods" style="height: 80px;  background-color: #fff;border:  4px;   border-radius: 6px;">
                     </div>
                 </div>
                 <div class="col-md-5 padding-bottom-1x">
@@ -378,14 +299,16 @@ function routung(){
                     <form class="subscribe-form" action="//rokaux.us12.list-manage.com/subscribe/post?u=c7103e2c981361a6639545bd5&amp;amp;id=1194bb7544" method="post" target="_blank" novalidate>
                         <div class="clearfix">
                             <div class="input-group input-light">
-                                <input class="form-control" type="email" name="EMAIL" placeholder="Your e-mail"><span class="input-group-addon"><i class="icon-mail"></i></span>
+                                <input class="form-control" type="email" name="EMAIL" placeholder="Укажите ваш Email"><span class="input-group-addon"><i class="icon-mail"></i></span>
                             </div>
                             <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
                             <div style="position: absolute; left: -5000px;" aria-hidden="true">
                                 <input type="text" name="b_c7103e2c981361a6639545bd5_1194bb7544" tabindex="-1">
                             </div>
                             <button class="btn btn-primary" type="submit"><i class="icon-check"></i></button>
-                        </div><span class="form-text text-sm text-white opacity-50">Subscribe to our Newsletter to receive early discount offers, latest news, sales and promo information.</span>
+                        </div><span class="form-text text-sm text-white opacity-50">
+                            Подпишитесь на нашу рассылку для получения ранних скидочных предложений, последних новостей, продаж и промо-информации.
+                        </span>
                     </form>
                 </div>
             </div>
@@ -410,7 +333,8 @@ function routung(){
   //  Catalog_bild();
     Menu();
     Card_Bild();
-    <?=routung()?>();
+    Page_bild(<?=$_GET['tmp']?>);
+    <? //routung()?>
 </script>
 
 </body>

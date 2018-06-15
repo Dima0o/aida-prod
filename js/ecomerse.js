@@ -26,6 +26,8 @@ function hh() {
             alert('Выполненно с ошибками или категория пустая getIssues_id');
         }
     });*/
+   // Global();
+ //   Menu_left();
     Hh2();
 }
 function addres(data) {
@@ -66,7 +68,7 @@ function CoffeeMachine(power) {
 
 // создаю кофеварку, мощностью 100000W чтобы кипятила быстро
 var coffeeMachine = new CoffeeMachine(100000);
-coffeeMachine.waterAmount = 200;
+//coffeeMachine.waterAmount = 200;
 
 //coffeeMachine.run();
 function Person(first, last, age, gender, interests) {
@@ -99,7 +101,7 @@ function Hh2() {
         type: 'GET',
         dataType: 'json',
         success: function (data) {
-            console.log(data);
+           // console.log(data);
             let i=0;
             $.each(data['items'], function (key, val) {
                 $('#accordion1').append('<div class="panel panel-default">\n' +
@@ -130,3 +132,155 @@ function Hh2() {
 
 }
 //передача данных в параметр для блока вакансий
+
+//роутинг глобальные элементы страницы для необычных страниц
+function Global() {
+    //Jobs();
+    let i=0;
+    $.ajax({
+        url: 'dev/page.php',
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+            document.title = data.titel;
+            $('#titel-page').text(data.titel);
+            //breadcrumbs
+            $.each(data['friends'], function (key, val) {
+                $('.breadcrumbs').append('<li class="heders-breadcrumbs"><a href="index.html">'+val.name+'</a></li><li class=" heders-breadcrumbs separator">&nbsp;</li>');
+                i++;
+            });
+           // $(".breadcrumbs .item:odd").append('<li class="separator">&nbsp;</li>');
+            $("li.heders-breadcrumbs").last().remove();
+        },
+        error: function () {
+            alert('Выполненно с ошибками или категория пустая Global()');
+        }
+    });
+
+} //выбор магазина для  постоянного меню
+
+//боковое меню
+
+function Menu_left() {
+    //Jobs();
+   //$('#blok-menu').html(menu_blok);
+    let elements=[];
+    ElemBlok();
+    $.ajax({
+        url: 'dev/main_menu.php',
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+         //   console.log(data);
+            $.each(data, function (key, val) {
+              //  elements.push('<li class="list-group-item"><span class="glyphicon glyphicon-ok"></span>'+val.name+'</li>');
+                //menu_blok=append('<li class="list-group-item"><span class="glyphicon glyphicon-ok"></span>'+val.name+'</li>');
+                $('<li>', {
+                    'data-url':val.url,
+                    class: 'list-group-item',
+                    html:'<span class="glyphicon glyphicon-ok"></span>'+val.name,
+                    click: function() {
+                     //   alert($(this).html());
+                        setLocation($(this).attr('data-url'));
+                        Page_bild($(this).attr('data-url'));
+                    }
+                }).appendTo('#blok-menu');
+            });
+        },
+        error: function () {
+            alert('Выполненно с ошибками Menu_left()');
+        }
+    });
+
+} //в
+
+function ElemBlok() {
+    $('<ul>', {
+        class: 'list-group',
+        id:'blok-menus'
+    }).html('#blok-menu');
+}
+function Page_bild(param) {
+    //setLocation(param);
+    $.ajax({
+        url: 'dev/page.php',
+        type: 'POST',
+        dataType: 'json',
+        data: {'param': param},
+        success: function (data) {
+          //  $('#container').html(data.content);
+            Menu_left(data['menu']);
+            document.title = data.titel;
+            $('#titel-page').text(data.titel);
+            $('.breadcrumbs').html('');
+         //   ElemBlok();
+            $.each(data['menu'], function (key, val) {
+                $('.breadcrumbs').append('<li class="heders-breadcrumbs"><a href="index.html">' + val.name + '</a></li><li class=" heders-breadcrumbs separator">&nbsp;</li>');
+            });
+            //Menu_left(data['menu']);
+            $("li.heders-breadcrumbs").last().remove();
+        //    Menu_left(data['menu']);
+           //глобальные функции
+            $.each(data['function'], function (key, val) {
+                 window[val]();
+            });
+            //window[data.function]() // data.function+'()';
+
+
+        },
+        error: function () {
+            alert('Выполненно с ошибками обновите страницу');
+        }
+    });
+}
+function ggIdea() {
+   //console.log(12132131231231231313);
+
+}
+function Menu_left(data) {
+  //  ElemBlok();
+    $('<ul>', {
+        class: 'list-group',
+        id:'blok-menus'
+    }).html('#blok-menu');
+    console.log(data);
+    $.each(data, function (key, val) {
+        //  elements.push('<li class="list-group-item"><span class="glyphicon glyphicon-ok"></span>'+val.name+'</li>');
+        //menu_blok=append('<li class="list-group-item"><span class="glyphicon glyphicon-ok"></span>'+val.name+'</li>');
+        $('<li>', {
+            'data-url':val.url,
+            class: 'list-group-item',
+            html:'<span class="glyphicon glyphicon-ok"></span>'+val.name,
+            click: function() {
+                //   alert($(this).html());
+                setLocation($(this).attr('data-url'));
+                Page_bild($(this).attr('data-url'));
+            }
+        }).append('#blok-menus');
+    });
+}
+
+//отображение хлебных крошек, заголовок,titel
+
+
+//лк
+
+
+// удаление из корзины добавить туда не здесь при создании блока
+
+//получение данных из загрузки страницы
+
+
+
+
+//набор функий для работы со страницами
+/**
+ <ul class="list-group">
+ <li class="list-group-item"><span class="glyphicon glyphicon-ok"></span> Responsible design</li>
+ <li class="list-group-item"><span class="glyphicon glyphicon-ok"></span> 3 examples</li>
+ <li class="list-group-item off"><span class="glyphicon glyphicon-remove"></span> HTML5 & CSS3</li>
+ <li class="list-group-item off"><span class="glyphicon glyphicon-remove"></span> PSD included</li>
+ <li class="list-group-item off"><span class="glyphicon glyphicon-remove"></span> Light and clean</li>
+ <li class="list-group-item off"><span class="glyphicon glyphicon-remove"></span> Customizible HTML</li>
+ </ul>
+ **/
